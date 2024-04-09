@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pageObjects.AddCustomerPage;
 import pageObjects.LoginPage;
+import pageObjects.SearchCustomerPage;
 
 import java.time.Duration;
 
@@ -103,6 +104,41 @@ public class Steps extends BaseClass {
     public void user_can_view_confirmation_message(String message) {
         Assert.assertTrue(driver.findElement(By.tagName("body")).getText()
                 .contains(message));
+    }
+
+    // Search for a customer using email id
+    @When("Enter customer email")
+    public void enter_customer_email() {
+        searchCustomerPage = new SearchCustomerPage(driver);
+        searchCustomerPage.setEmail("arthur_holmes@nopCommerce.com");
+    }
+
+    @When("Click on Search button")
+    public void click_on_search_button() throws InterruptedException {
+        searchCustomerPage.clickSearch();
+        Thread.sleep(5000);
+    }
+
+    @Then("User should find the email in the results table")
+    public void user_should_find_the_email_in_the_results_table() {
+        Assert.assertTrue(searchCustomerPage.searchCustomerByEmailId("arthur_holmes@nopCommerce.com"));
+    }
+
+    // Search customer by FirstName and LastName
+    @When("Enter customer FirstName")
+    public void enter_customer_first_name() {
+        searchCustomerPage = new SearchCustomerPage(driver);
+        searchCustomerPage.setFirstName("Arthur");
+    }
+
+    @When("Enter customer LastName")
+    public void enter_customer_last_name() {
+        searchCustomerPage.setLastName("Holmes");
+    }
+
+    @Then("User should find the Name in the results table")
+    public void user_should_find_the_name_in_the_results_table() {
+        Assert.assertTrue(searchCustomerPage.searchCustomerByName("Arthur Holmes"));
     }
 
 
