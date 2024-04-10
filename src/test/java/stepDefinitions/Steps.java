@@ -3,6 +3,8 @@ package stepDefinitions;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,11 +14,13 @@ import pageObjects.SearchCustomerPage;
 
 import java.time.Duration;
 
+
 public class Steps extends BaseClass {
 
     // Login methods
     @Given("User launches Chrome Browser")
     public void user_launches_chrome_browser() {
+        logger.info("Launched Chrome Browser");
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 

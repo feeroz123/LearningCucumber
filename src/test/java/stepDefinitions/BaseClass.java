@@ -1,6 +1,8 @@
 package stepDefinitions;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import pageObjects.AddCustomerPage;
 import pageObjects.LoginPage;
@@ -11,6 +13,7 @@ public class BaseClass {
     public LoginPage loginPage;
     public AddCustomerPage addCustomerPage;
     public SearchCustomerPage searchCustomerPage;
+    public static Logger logger = LogManager.getLogger("nopCommerce");;
 
     // Generate random string for unique email addresses
     public static String randomString() {
