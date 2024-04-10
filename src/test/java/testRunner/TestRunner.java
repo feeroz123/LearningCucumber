@@ -9,7 +9,8 @@ import org.junit.runner.RunWith;
         features = "Features",
         glue = "stepDefinitions",
         dryRun = false,
-        plugin = {"pretty", "html:target/test-output.html"}
+        plugin = {"pretty", "html:target/cucumber-output.html"},
+        tags = ("@sanity or @regression") // To execute only selected tests by using their tags
 )
 
 public class TestRunner {
